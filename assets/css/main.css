@@ -1,0 +1,239 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+    color-scheme: dark;
+  }
+
+  body {
+    @apply font-sans text-ink bg-night antialiased;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+  }
+
+  ::selection {
+    background: rgba(0, 204, 255, 0.3);
+  }
+
+  :focus-visible {
+    outline: 2px solid #00ccff;
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply max-w-6xl mx-auto px-5 sm:px-8;
+  }
+
+  /* Títulos: sans geométrica pesada, entrelinha curta */
+  .h-display {
+    @apply font-display font-extrabold text-ink;
+    letter-spacing: -0.035em;
+    line-height: 1.03;
+  }
+
+  /* Gradiente da marca no texto */
+  .grad-text {
+    background-image: linear-gradient(100deg, #3b8ee0 0%, #00ccff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Rótulos em mono, no estilo de comentário de código */
+  .tag {
+    @apply inline-flex items-center rounded-md border border-cyan/30 bg-cyan/5 px-3 py-1.5 font-mono text-xs text-cyan-light;
+  }
+  .eyebrow {
+    @apply font-mono text-xs text-brand-sky;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center rounded-xl px-6 py-3.5 text-[0.95rem] font-bold transition duration-200;
+  }
+  .btn-grad {
+    @apply btn text-white hover:-translate-y-0.5;
+    background-image: linear-gradient(100deg, #1b76c7 0%, #00a8e8 100%);
+    box-shadow: 0 8px 28px -8px rgba(0, 168, 232, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
+  .btn-grad:hover {
+    box-shadow: 0 12px 34px -8px rgba(0, 204, 255, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+  .btn-ghost {
+    @apply btn border border-line bg-night-800 text-ink hover:border-cyan/40 hover:bg-night-700;
+  }
+
+  .card {
+    @apply rounded-2xl border border-line bg-night-800/70 transition duration-300;
+  }
+  a.card:hover,
+  .card-hover:hover {
+    border-color: rgba(0, 204, 255, 0.35);
+    box-shadow: 0 0 0 1px rgba(0, 204, 255, 0.12), 0 20px 50px -24px rgba(0, 168, 232, 0.45);
+  }
+
+  /* Malha de pontos do fundo */
+  .dots {
+    background-image: radial-gradient(rgba(148, 178, 210, 0.16) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+}
+
+/* Linhas de grade ao fundo (estilo Vercel), esmaecendo nas bordas */
+.grid-lines {
+  background-image:
+    linear-gradient(to right, rgba(148, 178, 210, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 178, 210, 0.07) 1px, transparent 1px);
+  background-size: 72px 72px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 30%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 30%, transparent 100%);
+}
+
+/* Borda com um feixe de luz girando (estilo Stripe/Vercel) */
+@property --a {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+.beam {
+  position: relative;
+  border-radius: 1.75rem;
+  background: linear-gradient(180deg, rgba(20, 30, 51, 0.7), rgba(12, 19, 34, 0.9));
+}
+.beam::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(from var(--a), rgba(148, 178, 210, 0.14) 0 62%, #00a8e8 80%, #7fe8ff 88%, rgba(148, 178, 210, 0.14) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  animation: beam-spin 7s linear infinite;
+  pointer-events: none;
+}
+@keyframes beam-spin {
+  to { --a: 360deg; }
+}
+
+/* Entra ao rolar, só onde o navegador sabe (sem JS; nos outros o conteúdo já aparece) */
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 5% entry 45%;
+  }
+  @keyframes reveal {
+    from { opacity: 0; transform: translateY(26px) scale(0.985); filter: blur(4px); }
+    to { opacity: 1; transform: none; filter: none; }
+  }
+}
+
+/* Linha de energia que corre entre as etapas */
+.flow-line {
+  background: linear-gradient(90deg, transparent, #00ccff, transparent) 0 0 / 40% 100% no-repeat, rgba(148, 178, 210, 0.16);
+  animation: flow 3.2s linear infinite;
+}
+@keyframes flow {
+  from { background-position: -50% 0, 0 0; }
+  to { background-position: 150% 0, 0 0; }
+}
+
+/* Entrada do hero: sobe e aparece, uma vez */
+.rise {
+  animation: rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--d, 0ms);
+}
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Janela de código: cada linha é "digitada" por vez */
+.type-line {
+  display: block;
+  overflow: hidden;
+  white-space: pre;
+  width: 0;
+  animation: type 0.9s steps(var(--n, 30), end) forwards;
+  animation-delay: var(--d, 0s);
+}
+@keyframes type {
+  to { width: calc(var(--n, 30) * 1ch); }
+}
+.caret {
+  display: inline-block;
+  width: 0.55em;
+  height: 1.1em;
+  margin-left: 2px;
+  vertical-align: -0.2em;
+  background: #00ccff;
+  animation: blink 1.05s steps(1) infinite;
+}
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* Faixa que corre na horizontal */
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 38s linear infinite;
+}
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+/* Brilho que respira atrás do hero */
+.glow-pulse { animation: glow-pulse 7s ease-in-out infinite; }
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.08); }
+}
+
+/* Celular dos produtos (ilustração em CSS) */
+@keyframes wave {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+.wave-1 { animation: wave 2s ease-in-out infinite; }
+.wave-2 { animation: wave 2s ease-in-out 0.25s infinite; }
+.wave-3 { animation: wave 2s ease-in-out 0.5s infinite; }
+
+@keyframes glare {
+  0%, 55% { background-position: 160% 0; }
+  85%, 100% { background-position: -60% 0; }
+}
+.glare {
+  background: linear-gradient(115deg, transparent 40%, rgba(255, 255, 255, 0.24) 50%, transparent 60%);
+  background-size: 250% 100%;
+  animation: glare 4.6s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -5px; }
+}
+.bob { animation: bob 3.4s ease-in-out infinite; }
+
+@keyframes ping-ring {
+  0% { transform: scale(0.7); opacity: 0.8; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+.ping-ring { animation: ping-ring 2.2s ease-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .rise { animation: none; }
+  .type-line { animation: none; width: auto; }
+  .caret, .marquee, .glow-pulse, .beam::before, .flow-line { animation: none; }
+  .reveal { animation: none; }
+  .wave-1, .wave-2, .wave-3, .glare, .bob, .ping-ring { animation: none; }
+  html { scroll-behavior: auto; }
+}
