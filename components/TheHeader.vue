@@ -1,47 +1,37 @@
 <template>
-  <header class="sticky top-0 z-50 border-b border-line bg-night/80 backdrop-blur-lg">
-    <div class="container-custom flex h-[72px] items-center justify-between">
-      <NuxtLink to="/" class="flex items-center gap-3" aria-label="Wicity Soft, página inicial" @click="open = false">
-        <img :src="logoIcon" alt="" width="34" height="34" class="h-[34px] w-[34px] rounded-lg" />
-        <span class="text-[1.3rem] font-extrabold tracking-tight">Wicity <span class="font-medium text-mute">Soft</span></span>
-      </NuxtLink>
+  <header class="fade-in sticky top-0 z-50 border-b transition-colors duration-300" :class="scrolled || open ? 'border-night-line bg-night/90 backdrop-blur-md' : 'border-transparent bg-night'">
+    <div class="container-site flex h-[68px] items-center justify-between">
+      <NuxtLink to="/" class="text-[1.1rem] font-semibold tracking-tight text-white" :aria-label="`${company.name}, página inicial`" @click="open = false">{{ company.name }}</NuxtLink>
 
-      <nav class="hidden items-center gap-9 md:flex" aria-label="Principal">
-        <NuxtLink v-for="l in links" :key="l.to" :to="l.to" class="nav-link text-[0.92rem] font-semibold text-mute hover:text-ink">{{ l.label }}</NuxtLink>
-        <a :href="whatsappLink()" target="_blank" rel="noopener" class="btn-grad !px-5 !py-2.5 !text-sm">Vamos conversar</a>
+      <nav class="hidden items-center gap-8 lg:flex" aria-label="Principal">
+        <NuxtLink v-for="l in nav" :key="l.to" :to="l.to" class="text-[0.92rem] text-mute-dark transition-colors duration-200 hover:text-white">{{ l.label }}</NuxtLink>
+        <NuxtLink to="/contato" class="btn-primary !min-h-[40px] !px-4 !py-2 !text-[0.88rem]">Iniciar projeto</NuxtLink>
       </nav>
 
-      <button type="button" class="rounded-md p-2 md:hidden" :aria-expanded="open" aria-label="Abrir menu" @click="open = !open">
-        <svg v-if="!open" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 8h16M4 16h16" /></svg>
-        <svg v-else class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M6 6l12 12M18 6L6 18" /></svg>
+      <button type="button" class="-mr-2 grid h-11 w-11 place-items-center text-white lg:hidden" :aria-expanded="open" aria-controls="menu-mobile" aria-label="Abrir menu" @click="open = !open">
+        <X v-if="open" :size="22" :stroke-width="1.75" />
+        <Menu v-else :size="22" :stroke-width="1.75" />
       </button>
     </div>
 
-    <nav v-if="open" class="container-custom flex flex-col pb-5 md:hidden" aria-label="Principal (celular)">
-      <NuxtLink v-for="l in links" :key="l.to" :to="l.to" class="border-t border-line py-3.5 text-xl font-bold" @click="open = false">{{ l.label }}</NuxtLink>
-      <a :href="whatsappLink()" target="_blank" rel="noopener" class="btn-grad mt-3">Vamos conversar</a>
+    <nav v-show="open" id="menu-mobile" class="container-site pb-8 pt-2 lg:hidden" aria-label="Principal (celular)">
+      <NuxtLink v-for="l in nav" :key="l.to" :to="l.to" class="flex min-h-[52px] items-center border-t border-night-line text-lg font-medium text-white" @click="open = false">{{ l.label }}</NuxtLink>
+      <NuxtLink to="/contato" class="btn-primary mt-4 w-full" @click="open = false">Iniciar projeto</NuxtLink>
     </nav>
   </header>
 </template>
 
 <script setup>
-import { whatsappLink } from '~/utils/site'
+import { Menu, X } from 'lucide-vue-next'
+import { company, nav } from '~/utils/site'
 
-// src dinâmico: o import estático de /public quebra no dev quando o caminho do projeto tem espaço
-const logoIcon = '/brand/icone-192.png'
-const links = [
-  { label: 'Produtos', to: '/produtos' },
-  { label: 'Sobre', to: '/sobre' },
-  { label: 'Contato', to: '/contato' }
-]
 const open = ref(false)
-</script>
+const scrolled = ref(false)
 
-<style scoped>
-.nav-link {
-  transition: color 0.2s ease;
-}
-.nav-link.router-link-active {
-  color: #e8f0f8;
-}
-</style>
+onMounted(() => {
+  const onScroll = () => (scrolled.value = window.scrollY > 8)
+  onScroll()
+  window.addEventListener('scroll', onScroll, { passive: true })
+  onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
+})
+</script>

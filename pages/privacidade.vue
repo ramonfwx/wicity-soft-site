@@ -1,7 +1,7 @@
 <template>
   <LegalDoc title="Política de privacidade" updated="28 de outubro de 2026">
     <p>
-      Esta política explica como a {{ company.legalName }}, CNPJ {{ company.cnpj }} (“Wicity Soft”), trata dados pessoais neste site, em conformidade com a Lei Geral de Proteção de Dados (Lei 13.709/2018, a LGPD).
+      Esta política explica como a {{ company.legalName }}, CNPJ {{ company.cnpj }} (“{{ company.name }}”), trata dados pessoais neste site, em conformidade com a Lei Geral de Proteção de Dados (Lei 13.709/2018, a LGPD).
     </p>
 
     <h2>1. Quais dados tratamos</h2>
@@ -17,7 +17,7 @@
 
     <h2>2. Fontes carregadas de terceiros</h2>
     <p>
-      O site carrega fontes de letra do Google Fonts, o que envia seu endereço IP e dados do navegador ao Google. Ao clicar em links para o WhatsApp ou para os sites dos produtos, você passa a seguir as regras de privacidade desses serviços.
+      O site carrega fontes de letra do Google Fonts, o que envia seu endereço IP e dados do navegador ao Google. Ao clicar em links para o WhatsApp ou para outros sites, você passa a seguir as regras de privacidade desses serviços.
     </p>
 
     <h2>3. Para que usamos e com que base legal</h2>
@@ -42,9 +42,9 @@
       Você pode pedir confirmação de tratamento, acesso, correção, anonimização, eliminação, portabilidade, informações sobre compartilhamento e a revogação de consentimento, nos termos da LGPD. Basta escrever para <a :href="`mailto:${company.email}`">{{ company.email }}</a>. Você também pode reclamar à Autoridade Nacional de Proteção de Dados (ANPD).
     </p>
 
-    <h2>7. Produtos da Wicity Soft</h2>
+    <h2>7. Projetos de clientes</h2>
     <p>
-      O Wicity Hotspot, o Linksouw e os demais produtos tratam dados de seus próprios usuários e têm políticas de privacidade próprias, publicadas nos respectivos sites.
+      Os sites e sistemas que desenvolvemos tratam dados de seus próprios usuários e seguem a política de privacidade de cada cliente. Esta política vale apenas para este site.
     </p>
 
     <h2>8. Alterações</h2>
@@ -57,6 +57,6 @@ import { company } from '~/utils/site'
 
 useHead({
   title: 'Política de privacidade',
-  meta: [{ name: 'description', content: 'Como a Wicity Soft trata dados pessoais neste site, conforme a LGPD.' }]
+  meta: [{ name: 'description', content: 'Como a empresa trata dados pessoais neste site, conforme a LGPD.' }]
 })
 </script>

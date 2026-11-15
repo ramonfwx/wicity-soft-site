@@ -12,7 +12,7 @@
 import { company } from '~/utils/site'
 
 useHead({
-  titleTemplate: (chunk) => (!chunk ? 'Wicity Soft' : chunk.includes('Wicity Soft') ? chunk : `${chunk} | Wicity Soft`),
+  titleTemplate: (chunk) => (!chunk ? company.name : chunk.includes(company.name) ? chunk : `${chunk} | ${company.name}`),
   script: [
     {
       type: 'application/ld+json',
@@ -26,7 +26,7 @@ useHead({
         url: company.url,
         logo: `${company.url}/brand/icone-512.png`,
         image: `${company.url}/brand/icone-512.png`,
-        description: 'Desenvolvedora de softwares e sistemas com produtos próprios, como o Wicity Hotspot e o Linksouw.',
+        description: 'Desenvolvimento de sites, sistemas sob medida, lojas virtuais, aplicativos, integrações e automações.',
         email: company.email,
         contactPoint: {
           '@type': 'ContactPoint',

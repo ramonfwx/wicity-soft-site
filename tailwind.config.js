@@ -10,20 +10,20 @@ export default {
   theme: {
     extend: {
       colors: {
-        // tema escuro: night é o fundo, ink é o texto
-        night: { DEFAULT: '#070b14', 800: '#0c1322', 700: '#141e33' },
-        ink: '#e8f0f8',
-        line: 'rgba(148, 178, 210, 0.14)',
-        mute: '#8fa3b5',
-        brand: { DEFAULT: '#1B76C7', deep: '#0B4FA0', sky: '#00A8E8' },
-        cyan: { DEFAULT: '#00CCFF', light: '#6DE6FF' },
-        amber: { DEFAULT: '#F6A509' }
+        // escuro estratégico, claro e um único azul
+        night: { DEFAULT: '#0B1220', 800: '#101A2E', line: '#1E293B' },
+        ink: '#0F172A',
+        snow: { DEFAULT: '#F8FAFC', 2: '#F1F5F9' },
+        mute: { DEFAULT: '#64748B', dark: '#94A3B8' },
+        line: '#E2E8F0',
+        brand: { DEFAULT: '#2563EB', hover: '#1D4ED8', soft: '#DBEAFE' }
       },
       fontFamily: {
-        display: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
-        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
-        mono: ['"JetBrains Mono"', 'ui-monospace', 'Consolas', 'monospace']
-      }
+        sans: ['Geist', 'Inter', 'system-ui', 'sans-serif'],
+        mono: ['"Geist Mono"', 'ui-monospace', 'Consolas', 'monospace']
+      },
+      maxWidth: { site: '1280px' },
+      borderRadius: { card: '14px' }
     }
   },
   plugins: []

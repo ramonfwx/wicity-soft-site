@@ -22,15 +22,15 @@ export default defineNuxtConfig({
       htmlAttrs: { lang: 'pt-BR' },
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
-      title: 'Wicity Soft | Desenvolvimento de softwares e sistemas',
+      title: 'Wicity Soft | Sites, sistemas e soluções em tecnologia',
       meta: [
-        { name: 'description', content: 'A Wicity Soft desenvolve softwares e sistemas próprios, como o Wicity Hotspot e o Linksouw. Conheça a empresa e os produtos.' },
-        { name: 'theme-color', content: '#070b14' },
+        { name: 'description', content: 'Desenvolvemos sites, sistemas sob medida, lojas virtuais, aplicativos, integrações e automações para empresas que querem crescer com tecnologia.' },
+        { name: 'theme-color', content: '#0B1220' },
         { property: 'og:type', content: 'website' },
         { property: 'og:locale', content: 'pt_BR' },
         { property: 'og:site_name', content: 'Wicity Soft' },
-        { property: 'og:title', content: 'Wicity Soft | Desenvolvimento de softwares e sistemas' },
-        { property: 'og:description', content: 'Softwares e sistemas próprios, cada um com identidade e site próprios.' },
+        { property: 'og:title', content: 'Wicity Soft | Sites, sistemas e soluções em tecnologia' },
+        { property: 'og:description', content: 'Sites, sistemas sob medida, aplicativos e integrações para o seu negócio.' },
         { property: 'og:image', content: 'https://wicity.com.br/brand/icone-512.png' },
         { name: 'twitter:card', content: 'summary' }
       ],
@@ -41,7 +41,7 @@ export default defineNuxtConfig({
         { rel: 'apple-touch-icon', href: '/brand/icone-180.png' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
-        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400..800&family=JetBrains+Mono:wght@400;500&display=swap' }
+        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap' }
       ]
     }
   },

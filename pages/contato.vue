@@ -1,40 +1,35 @@
 <template>
   <div>
-    <section class="relative overflow-hidden border-b border-line">
-      <div class="dots absolute inset-0 [mask-image:linear-gradient(to_bottom,black,transparent_90%)]"></div>
-      <div class="container-custom relative pb-14 pt-16 md:pb-20 md:pt-24">
-        <p class="tag rise">// contato</p>
-        <h1 class="h-display rise mt-6 text-[clamp(2.7rem,7vw,5.2rem)]" style="--d: 100ms">Vamos <span class="grad-text">conversar.</span></h1>
-        <p class="rise mt-6 max-w-[48ch] text-lg text-mute" style="--d: 200ms">
-          Dúvida sobre um produto, parceria ou uma ideia de software. O caminho mais rápido é o WhatsApp.
-        </p>
-      </div>
-    </section>
+    <PageHero eyebrow="Contato" lede="Conte o que você precisa: um sistema, uma plataforma, uma integração ou só uma ideia. O caminho mais rápido é o WhatsApp.">
+      Vamos conversar sobre o seu projeto.
+    </PageHero>
 
-    <section class="container-custom py-14 md:py-20">
-      <div class="grid gap-5 md:grid-cols-2">
-        <a :href="whatsappLink()" target="_blank" rel="noopener" class="card group p-8">
-          <p class="font-mono text-xs text-brand-sky">/whatsapp</p>
-          <p class="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl">{{ company.whatsappLabel }}</p>
-          <p class="mt-4 text-sm font-bold text-cyan">Abrir conversa <span class="inline-block transition group-hover:translate-x-1">→</span></p>
+    <section class="section bg-snow">
+      <div class="container-site grid gap-5 md:grid-cols-2">
+        <a :href="whatsappLink()" target="_blank" rel="noopener" class="card-lift group block p-8 md:p-10">
+          <span class="grid h-11 w-11 place-items-center rounded-xl bg-brand-soft text-brand"><MessageCircle :size="22" :stroke-width="1.75" /></span>
+          <p class="mt-8 font-mono text-[0.72rem] uppercase tracking-[0.08em] text-mute">WhatsApp</p>
+          <p class="mt-2 text-[clamp(1.6rem,3vw,2.2rem)] font-semibold tracking-tight">{{ company.whatsappLabel }}</p>
+          <p class="mt-6 inline-flex items-center gap-2 text-[0.95rem] font-medium text-brand">Abrir conversa <ArrowRight :size="18" :stroke-width="1.75" class="arrow" /></p>
         </a>
-        <a :href="`mailto:${company.email}`" class="card group p-8">
-          <p class="font-mono text-xs text-brand-sky">/e-mail</p>
-          <p class="mt-4 break-all text-2xl font-extrabold tracking-tight sm:text-3xl">{{ company.email }}</p>
-          <p class="mt-4 text-sm font-bold text-cyan">Escrever <span class="inline-block transition group-hover:translate-x-1">→</span></p>
+        <a :href="`mailto:${company.email}`" class="card-lift group block p-8 md:p-10">
+          <span class="grid h-11 w-11 place-items-center rounded-xl bg-brand-soft text-brand"><Mail :size="22" :stroke-width="1.75" /></span>
+          <p class="mt-8 font-mono text-[0.72rem] uppercase tracking-[0.08em] text-mute">E-mail</p>
+          <p class="mt-2 break-all text-[clamp(1.3rem,2.4vw,1.8rem)] font-semibold tracking-tight">{{ company.email }}</p>
+          <p class="mt-6 inline-flex items-center gap-2 text-[0.95rem] font-medium text-brand">Escrever <ArrowRight :size="18" :stroke-width="1.75" class="arrow" /></p>
         </a>
       </div>
-
-      <p class="mt-10 font-mono text-sm text-mute">// {{ company.legalName }}, CNPJ {{ company.cnpj }}.</p>
+      <p class="container-site mt-10 text-[0.85rem] text-mute">{{ company.legalName }}, CNPJ {{ company.cnpj }}.</p>
     </section>
   </div>
 </template>
 
 <script setup>
+import { ArrowRight, Mail, MessageCircle } from 'lucide-vue-next'
 import { company, whatsappLink } from '~/utils/site'
 
 useHead({
   title: 'Contato',
-  meta: [{ name: 'description', content: 'Fale com a Wicity Soft por WhatsApp ou e-mail.' }]
+  meta: [{ name: 'description', content: 'Fale com a Wicity Soft por WhatsApp ou e-mail e conte sobre o seu projeto.' }]
 })
 </script>
