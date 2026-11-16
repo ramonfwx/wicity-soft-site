@@ -7,7 +7,7 @@
       <span class="h-2.5 w-2.5 rounded-full bg-slate-300"></span>
       <span class="ml-3 truncate rounded-md border border-line bg-white px-3 py-0.5 font-mono text-[0.7rem] text-mute">{{ domain }}</span>
     </div>
-    <img v-if="src" :src="src" :alt="alt" :width="800" :height="640" :loading="eager ? 'eager' : 'lazy'" decoding="async" class="aspect-[5/4] w-full object-cover object-top" />
+    <img v-if="src" :src="withBase(src)" :alt="alt" :width="800" :height="640" :loading="eager ? 'eager' : 'lazy'" decoding="async" class="aspect-[5/4] w-full object-cover object-top" />
     <div v-else class="grid aspect-[5/4] place-items-center bg-snow-2 p-8 text-center">
       <div>
         <Lock :size="22" :stroke-width="1.75" class="mx-auto text-mute" />
@@ -20,6 +20,10 @@
 
 <script setup>
 import { Lock } from 'lucide-vue-next'
+
+// imagens em /public precisam do prefixo da publicação (ex.: GitHub Pages)
+const baseURL = useRuntimeConfig().app.baseURL.replace(/\/$/, '')
+const withBase = (p) => `${baseURL}${p}`
 
 defineProps({
   src: { type: String, default: '' },

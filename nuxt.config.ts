@@ -1,4 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+// Prefixo da publicação (GitHub Pages usa /wicity-soft-site/); vazio em dev e no domínio próprio
+const base = (process.env.NUXT_APP_BASE_URL || '/').replace(/\/$/, '')
+
 export default defineNuxtConfig({
   devtools: { enabled: false },
 
@@ -35,10 +38,10 @@ export default defineNuxtConfig({
         { name: 'twitter:card', content: 'summary' }
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-        { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/brand/icone-32.png' },
-        { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/brand/icone-16.png' },
-        { rel: 'apple-touch-icon', href: '/brand/icone-180.png' },
+        { rel: 'icon', type: 'image/x-icon', href: `${base}/favicon.ico` },
+        { rel: 'icon', type: 'image/png', sizes: '32x32', href: `${base}/brand/icone-32.png` },
+        { rel: 'icon', type: 'image/png', sizes: '16x16', href: `${base}/brand/icone-16.png` },
+        { rel: 'apple-touch-icon', href: `${base}/brand/icone-180.png` },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
         { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap' }
